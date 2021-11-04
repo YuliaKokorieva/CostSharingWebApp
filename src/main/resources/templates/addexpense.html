@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<head>
+    <title>CostSharing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>	
+	<div class="card" style="width: 30%">
+		<div class="card-body">
+			<h3 class="card-title">Add a new expense</h3>
+			<form th:object="${expense}" th:action="@{/saveexpense}" action="#" method="post">
+				<table  class="table">
+			    	<tr><td>Name:</td><td><input type="text" th:field="${expense.expenseName}" /></td></tr>
+			    	<tr><td>Amount:</td><td><input type="number" step="any" th:field="${expense.expValue}" /></td></tr>
+			    	<tr><td>Paid by:</td>
+			    		<td><select th:field="*{participant}" class="form-control">
+							<option th:each="part: ${participants}" th:value="${part.partID}" th:text="${part.partName}"></option>
+						</select></td></tr>
+					<tr><td>Trip: </td><td th:text="${expense.trip.tripName}" th:field="${trip}"></td></tr>
+					<tr><td></td><td><input type="hidden" th:field="${expense.trip.tripID}" /></td></tr>
+					<tr><td></td><td><input type="hidden" th:field="${expense.expenseID}" /></td></tr>
+				</table> 
+			    <input type="submit" name="save" value="Save"/>
+			    <input type="submit" name="cancel" value="Cancel"/>
+			</form>
+     	</div>
+     </div>
+</body>
+</html>

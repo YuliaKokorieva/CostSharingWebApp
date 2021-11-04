@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<head>
+    <title>CostSharing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="card" style="width: 50%">
+		<div class="card-body">
+			<h1 class="card-title" th:text=${trip.getTripName()}></h1> 
+			<a href = "/trips"><button class="btn btn-secondary">Back to main</button></a>
+			<a th:href="@{/edittrip/{id}(id=${trip.getTripID()})}"><button class="btn btn-success">Edit trip</button></a>
+		</div>
+	</div>
+	<div class="card" style="width: 50%">
+		<div class="card-body">
+			<h3 class="card-title">Summary</h3>
+     		<p th:text=${summary}/>
+    	</div>
+    </div>
+	<div class="card" style="width: 50%">
+		<div class="card-body">
+			<h3 class="card-title">List of participants</h3>
+			<a th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
+		    <table  class="table">
+		    	<tr th:each = "part:${participants}">
+		    		<td th:text="${part.getPartName()}"></td>
+		    		<td style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success">Edit</button></a></td>
+		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger">Delete</button></a></td>
+		    	</tr>
+		     </table>  
+     	</div>
+     </div>
+
+     
+	<div class="card" style="width: 50%">
+		<div class="card-body">
+			<h3 class="card-title">List of expenses</h3>
+		    <a th:href="@{/trips/{id}/addexpense(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new expense</button></a>
+		    <table  class="table">
+		    	<thead>
+		    		<th scope="col">Expense</th>
+		    		<th scope="col">Amount</th>
+		    		<th scope="col">Paid by</th>
+		    		<th scope="col"></th>
+		    		<th scope="col"></th>
+		    	</thead>
+		    	
+		    	<tr th:each = "exp:${expenses}">
+		    		<td th:text="${exp.getExpenseName()}"></td>
+		    		<td th:text="${exp.getExpValue()}"></td>
+		    		<td th:text="${exp.getParticipant().getPartName()}"></td>
+		    		<td style="width:100px;"><a th:href="@{/editexp/{id}(id=${exp.getExpenseID()})}"><button class="btn btn-success">Edit</button></a></td>
+		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${exp.getExpenseID()})}"><button class="btn btn-danger">Delete</button></a></td>
+		    	</tr>
+		    </table> 
+			
+		</div>
+     </div>	
+ 
+     	
+     	
+</body>
+</html>

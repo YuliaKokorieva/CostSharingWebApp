@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<head>
+    <title>CostSharing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Trips</h1> 
+	(click on the trip name to open list of participants and expenses)
+    <table  class="table" style="width:50%">
+
+    	<tr th:each = "trip : ${trips}">
+    		<td><a th:href="@{/trips/{id}(id=${trip.getTripID()})}" th:text="${trip.tripName}"></a></td>
+    		<td style="width:100px;"><a th:href="@{/edittrip/{id}(id=${trip.getTripID()})}"><button class="btn btn-success">Edit</button></a></td>
+    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${trip.getTripID()})}"><button class="btn btn-danger">Delete</button></a></td>
+    	</tr>
+     </table> 	
+     <a href = "/addtrip"><button class="btn btn-secondary">Add a new trip</button></a>
+</body>
+</html>
