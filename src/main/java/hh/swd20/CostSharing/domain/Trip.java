@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,16 +18,16 @@ public class Trip {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long tripID;
+	@NotBlank(message = "trip name cannot be null")
 	private String tripName;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="trip")
-	@JsonIgnoreProperties("trip")
+	@JsonIgnoreProperties({"trip", "expenses", "participants"})
 	private List<Participant> participants;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="trip")
-	@JsonIgnoreProperties("trip")
+	@JsonIgnoreProperties({"trip", "expenses", "participants"})
 	private List<Expense> expenses;
-	
 	
 	public Trip() {
 		super();

@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,19 +17,19 @@ public class Expense {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long expenseID;
-	
+	@NotNull(message = "expense name cannot be null")
 	private String expenseName;
 	
 	@ManyToOne
 	@JoinColumn(name="tripID")
-	@JsonIgnoreProperties("trip")
+	@JsonIgnoreProperties({"trip", "participants", "expenses"})
 	private Trip trip;
 	
 	@ManyToOne
 	@JoinColumn(name="partID")
-	@JsonIgnoreProperties("participant")
+	@JsonIgnoreProperties({"expenses", "trip", "participant"})
 	private Participant participant;
-	
+	@Positive(message="value cannot be negative or 0")
 	private Double expValue;
 	
 	public Expense() {

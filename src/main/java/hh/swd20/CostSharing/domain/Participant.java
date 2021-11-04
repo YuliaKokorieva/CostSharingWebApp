@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -20,16 +21,16 @@ public class Participant {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long partID;
-	
+	@NotBlank(message = "participant name cannot be null")
 	private String partName;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("trip")
+	@JsonIgnoreProperties({"trip", "participants", "expenses"})
 	@JoinColumn(name="tripID")
 	private Trip trip;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="participant")
-	@JsonIgnoreProperties("participant")
+	@JsonIgnoreProperties({"participants", "expenses", "trip"})
 	private List<Expense> expenses;
 	
 	
