@@ -109,14 +109,14 @@ public class AppController {
 		Trip trip = tripRepo.findById(id).get();
 		model.addAttribute("trip", trip);
 		model.addAttribute("participants",trip.getParticipants());
-		return "/edittrip";
+		return "edittrip";
 	}
 	
 	@GetMapping(value="/editexp/{id}")
 	public String editExp(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("expense", expRepo.findById(id).get());
 		model.addAttribute("participants", expRepo.findById(id).get().getTrip().getParticipants());
-		return "/addexpense";
+		return "addexpense";
 	}
 	
 	@GetMapping(value = "trips/{id}/addparticipant")
