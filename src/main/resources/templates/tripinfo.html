@@ -1,11 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
 <head>
     <title>CostSharing</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+	<div class="card" style="width: 50%">
+		<div class="card-body">
+			<div class="col-md-4">
+				<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div class="card" style="width: 50%">
 		<div class="card-body">
 			<h1 class="card-title" th:text=${trip.getTripName()}></h1> 
@@ -22,12 +32,12 @@
 	<div class="card" style="width: 50%">
 		<div class="card-body">
 			<h3 class="card-title">List of participants</h3>
-			<a th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
+			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
 		    <table  class="table">
 		    	<tr th:each = "part:${participants}">
 		    		<td th:text="${part.getPartName()}"></td>
-		    		<td style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success">Edit</button></a></td>
-		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger">Delete</button></a></td>
+		    		<td sec:authorize="hasAuthority('ADMIN')" style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success">Edit</button></a></td>
+		    		<td sec:authorize="hasAuthority('ADMIN')" style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger">Delete</button></a></td>
 		    	</tr>
 		     </table>  
      	</div>

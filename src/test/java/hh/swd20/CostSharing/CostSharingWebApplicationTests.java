@@ -1,4 +1,4 @@
-package hh.swd20.CostSharingWeb;
+package hh.swd20.CostSharing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
