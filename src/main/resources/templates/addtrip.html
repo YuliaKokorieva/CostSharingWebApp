@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>	
-	<div class="card" style="width: 30%">
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
 			<h3 class="card-title">Add a new trip</h3>
 			<form th:object="${trip}" th:action="@{/savetrip}" action="#" method="post">
@@ -19,7 +19,7 @@
 			</form>
 		    
      	</div>
-     </div>
+     </div></div>
 
 </body>
 </html>

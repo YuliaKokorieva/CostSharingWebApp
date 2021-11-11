@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<div class="card" style="width: 50%">
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<div class="col-md-4">
 				<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
@@ -15,21 +15,21 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	<div class="card" style="width: 50%">
+	</div></div>
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<h1 class="card-title" th:text=${trip.getTripName()}></h1> 
 			<a href = "/trips"><button class="btn btn-secondary">Back to main</button></a>
 			<a th:href="@{/edittrip/{id}(id=${trip.getTripID()})}"><button class="btn btn-success">Edit trip</button></a>
 		</div>
-	</div>
-	<div class="card" style="width: 50%">
+	</div></div>
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<h3 class="card-title">Summary</h3>
      		<p th:text=${summary}/>
     	</div>
-    </div>
-	<div class="card" style="width: 50%">
+    </div></div>
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<h3 class="card-title">List of participants</h3>
 			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
@@ -41,10 +41,8 @@
 		    	</tr>
 		     </table>  
      	</div>
-     </div>
-
-     
-	<div class="card" style="width: 50%">
+     </div></div>    
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<h3 class="card-title">List of expenses</h3>
 		    <a th:href="@{/trips/{id}/addexpense(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new expense</button></a>
@@ -67,7 +65,7 @@
 		    </table> 
 			
 		</div>
-     </div>	
+     </div>	</div>
  
      	
      	

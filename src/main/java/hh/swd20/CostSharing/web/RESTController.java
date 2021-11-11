@@ -53,8 +53,8 @@ public class RESTController {
 	}
 	
 	@PostMapping(value="/apitrips") 
-		public @ResponseBody Trip saveTripRest(@RequestBody Trip trip) {
-			return tripRepo.save(trip);	
+	public @ResponseBody Trip saveTripRest(@RequestBody Trip trip) {
+		return tripRepo.save(trip);	
 	}
 	
 	@PostMapping(value="/apiparticipants") 

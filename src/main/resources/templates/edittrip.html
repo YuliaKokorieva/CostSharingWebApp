@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>	
-	<div class="card" style="width: 30%">
+	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
 			<h3 class="card-title">Edit trip</h3>
 			<form th:object="${trip}" th:action="@{/savetrip}" action="#" method="post">
@@ -19,8 +19,8 @@
 			    <input type="submit" name="cancel" value="Cancel"/>
 			</form>
      	</div>
-    </div>
-   	<div class="card" style="width: 30%">
+    </div></div>
+   	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
 			<h3 class="card-title">List of participants</h3>
 			<a th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
@@ -32,7 +32,7 @@
 		    	</tr>
 		     </table>  
      	</div>
-     </div>
+     </div></div>
 
 
 </body>
