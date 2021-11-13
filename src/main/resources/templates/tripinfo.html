@@ -1,18 +1,50 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        if (selectedOption != ''){
+ //           window.location.replace('trips?lang=' + selectedOption);
+
+        }
+    });
+});
+</script>
+
 <head>
     <title>CostSharing</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		th, td {
+		  padding: 5px;
+		}
+</style>
 </head>
 <body>
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<div class="col-md-4">
-				<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
-				<form th:action="@{/logout}" method="post">
-					<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
-				</form>
+				<table>
+					<tr>
+						<td><h3 th:inline="text" th:text="#{greeting}"></h3></td>
+						<td><h3>[[${#httpServletRequest.remoteUser}]]!</h3></td>
+						<td>
+							<form th:action="@{/logout}" method="post">
+								<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+							</form>
+						</td>
+					</tr>
+				</table>
+				<span th:text="#{lang.change}"></span>:
+					<select id="locales">
+					    <option value=""></option>
+					    <option value="en" th:text="#{lang.eng}"></option>
+					    <option value="fi" th:text="#{lang.fi}"></option>
+					</select>
 			</div>
 		</div>
 	</div></div>
