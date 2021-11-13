@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import hh.swd20.CostSharing.CostSharingApplication;
 import hh.swd20.CostSharing.domain.Expense;
 import hh.swd20.CostSharing.domain.ExpenseRepository;
 import hh.swd20.CostSharing.domain.Participant;
