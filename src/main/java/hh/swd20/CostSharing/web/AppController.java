@@ -130,7 +130,7 @@ public class AppController {
 	@GetMapping(value="/editpart/{id}")
 	public String editPart(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("participant", partRepo.findById(id).get());
-		return "/addparticipant";
+		return "addparticipant";
 	}
 	
 	public String calculateSummary(Long tripID) {

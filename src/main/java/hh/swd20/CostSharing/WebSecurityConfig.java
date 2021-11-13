@@ -23,17 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-//				.antMatchers("/", "/trips", "/css/**").permitAll()
-				.anyRequest().permitAll()
-				
-		// h2 security settings not working
-				
-//				.and()
-//				.authorizeRequests().antMatchers("/h2-console/**").permitAll()
-//				.and()
-//				.csrf().ignoringAntMatchers("/h2-console/**")
-//				.and()
-//				.headers().frameOptions().sameOrigin()
+				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.defaultSuccessUrl("/trips", true)
