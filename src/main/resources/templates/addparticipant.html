@@ -8,11 +8,11 @@
 <body>	
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
-			<h3 class="card-title">Add a new participant</h3>
+			<h3 class="card-title" th:text="#{newPart}"></h3>
 			<form th:object="${participant}" th:action="@{/saveparticipant}" action="#" method="post">
 				<table  class="table">
-			    	<tr><td>Name: </td><td><input type="text" th:field="${participant.partName}" /></td></tr>
-					<tr><td>Trip: </td><td th:text="${participant.getTrip().getTripName()}" th:field="${trip}"></td>
+			    	<tr><td th:text="#{name}">Name: </td><td><input type="text" th:field="${participant.partName}" /></td></tr>
+					<tr><td th:text="#{trip}">Trip: </td><td th:text="${participant.getTrip().getTripName()}" th:field="${trip}"></td>
 					<tr><td></td><td><input type="hidden" th:field="${participant.partID}" /></td></tr>
 					<tr><td></td><td><input type="hidden" th:field="${participant.trip.tripID}" /></td></tr>
 				</table> 

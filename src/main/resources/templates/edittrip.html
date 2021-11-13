@@ -8,7 +8,7 @@
 <body>	
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
-			<h3 class="card-title">Edit trip</h3>
+			<h3 class="card-title" th:text="#{editTrip}"></h3>
 			<form th:object="${trip}" th:action="@{/savetrip}" action="#" method="post">
 				<table  class="table">
 			    	<tr><td>Name: </td><td><input type="text" th:field="${trip.tripName}" /></td></tr>
@@ -22,13 +22,13 @@
     </div></div>
    	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
-			<h3 class="card-title">List of participants</h3>
-			<a th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
+			<h3 class="card-title" th:text="#{partList}"></h3>
+			<a th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary" th:text="#{newPart}"></button></a>
 		    <table  class="table">
 		    	<tr th:each = "part:${participants}">
 		    		<td th:text="${part.getPartName()}"></td>
-		    		<td style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success">Edit</button></a></td>
-		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger">Delete</button></a></td>
+		    		<td style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success" th:text="#{button.edit}"></button></a></td>
+		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger" th:text="#{button.delete}"></button></a></td>
 		    	</tr>
 		     </table>  
      	</div>

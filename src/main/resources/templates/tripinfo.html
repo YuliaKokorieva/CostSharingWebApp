@@ -1,19 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#locales").change(function () {
-        var selectedOption = $('#locales').val();
-        if (selectedOption != ''){
- //           window.location.replace('trips?lang=' + selectedOption);
-
-        }
-    });
-});
-</script>
 
 <head>
     <title>CostSharing</title>
@@ -39,50 +26,44 @@ $(document).ready(function() {
 						</td>
 					</tr>
 				</table>
-				<span th:text="#{lang.change}"></span>:
-					<select id="locales">
-					    <option value=""></option>
-					    <option value="en" th:text="#{lang.eng}"></option>
-					    <option value="fi" th:text="#{lang.fi}"></option>
-					</select>
 			</div>
 		</div>
 	</div></div>
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
 			<h1 class="card-title" th:text=${trip.getTripName()}></h1> 
-			<a href = "/trips"><button class="btn btn-secondary">Back to main</button></a>
-			<a th:href="@{/edittrip/{id}(id=${trip.getTripID()})}"><button class="btn btn-success">Edit trip</button></a>
+			<a href = "/trips"><button class="btn btn-secondary" th:text="#{backToMain}"></button></a>
+			<a th:href="@{/edittrip/{id}(id=${trip.getTripID()})}"><button class="btn btn-success" th:text="#{editTrip}"></button></a>
 		</div>
 	</div></div>
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
-			<h3 class="card-title">Summary</h3>
+			<h3 class="card-title" th:text="#{summary}"></h3>
      		<p th:text=${summary}/>
     	</div>
     </div></div>
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
-			<h3 class="card-title">List of participants</h3>
-			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new participant</button></a>
+			<h3 class="card-title" th:text="#{partList}"></h3>
+			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/trips/{id}/addparticipant(id=${trip.getTripID()})}"><button class="btn btn-secondary" th:text="#{newPart}"></button></a>
 		    <table  class="table">
 		    	<tr th:each = "part:${participants}">
 		    		<td th:text="${part.getPartName()}"></td>
-		    		<td sec:authorize="hasAuthority('ADMIN')" style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success">Edit</button></a></td>
-		    		<td sec:authorize="hasAuthority('ADMIN')" style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger">Delete</button></a></td>
+		    		<td sec:authorize="hasAuthority('ADMIN')" style="width:100px;"><a th:href="@{/editpart/{id}(id=${part.getPartID()})}"><button class="btn btn-success" th:text="#{button.edit}"></button></a></td>
+		    		<td sec:authorize="hasAuthority('ADMIN')" style="width:100px;"><a th:href="@{/delete/{id}(id=${part.getPartID()})}"><button class="btn btn-danger" th:text="#{button.delete}"></button></a></td>
 		    	</tr>
 		     </table>  
      	</div>
      </div></div>    
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 90%">
 		<div class="card-body">
-			<h3 class="card-title">List of expenses</h3>
-		    <a th:href="@{/trips/{id}/addexpense(id=${trip.getTripID()})}"><button class="btn btn-secondary">Add a new expense</button></a>
+			<h3 class="card-title" th:text="#{expList}"></h3>
+		    <a th:href="@{/trips/{id}/addexpense(id=${trip.getTripID()})}"><button class="btn btn-secondary" th:text="#{newExp}"></button></a>
 		    <table  class="table">
 		    	<thead>
-		    		<th scope="col">Expense</th>
-		    		<th scope="col">Amount</th>
-		    		<th scope="col">Paid by</th>
+		    		<th scope="col" th:text="#{expense}"></th>
+		    		<th scope="col" th:text="#{amount}"></th>
+		    		<th scope="col" th:text="#{paidBy}"></th>
 		    		<th scope="col"></th>
 		    		<th scope="col"></th>
 		    	</thead>
@@ -91,8 +72,8 @@ $(document).ready(function() {
 		    		<td th:text="${exp.getExpenseName()}"></td>
 		    		<td th:text="${exp.getExpValue()}"></td>
 		    		<td th:text="${exp.getParticipant().getPartName()}"></td>
-		    		<td style="width:100px;"><a th:href="@{/editexp/{id}(id=${exp.getExpenseID()})}"><button class="btn btn-success">Edit</button></a></td>
-		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${exp.getExpenseID()})}"><button class="btn btn-danger">Delete</button></a></td>
+		    		<td style="width:100px;"><a th:href="@{/editexp/{id}(id=${exp.getExpenseID()})}"><button class="btn btn-success" th:text="#{button.edit}"></button></a></td>
+		    		<td style="width:100px;"><a th:href="@{/delete/{id}(id=${exp.getExpenseID()})}"><button class="btn btn-danger" th:text="#{button.delete}"></button></a></td>
 		    	</tr>
 		    </table> 
 			

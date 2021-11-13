@@ -8,16 +8,16 @@
 <body>	
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
-			<h3 class="card-title">Add a new expense</h3>
+			<h3 class="card-title" th:text="#{newExp}"></h3>
 			<form th:object="${expense}" th:action="@{/saveexpense}" action="#" method="post">
 				<table  class="table">
-			    	<tr><td>Name:</td><td><input type="text" th:field="${expense.expenseName}" /></td></tr>
-			    	<tr><td>Amount:</td><td><input type="number" step="any" th:field="${expense.expValue}" /></td></tr>
-			    	<tr><td>Paid by:</td>
+			    	<tr><td th:text="#{name}"></td><td><input type="text" th:field="${expense.expenseName}" /></td></tr>
+			    	<tr><td th:text="#{amount}"></td><td><input type="number" step="any" th:field="${expense.expValue}" /></td></tr>
+			    	<tr><td th:text="#{paidBy}"></td>
 			    		<td><select th:field="*{participant}" class="form-control">
 							<option th:each="part: ${participants}" th:value="${part.partID}" th:text="${part.partName}"></option>
 						</select></td></tr>
-					<tr><td>Trip: </td><td th:text="${expense.trip.tripName}" th:field="${trip}"></td></tr>
+					<tr><td th:text="#{trip}"></td><td th:text="${expense.trip.tripName}" th:field="${trip}"></td></tr>
 					<tr><td></td><td><input type="hidden" th:field="${expense.trip.tripID}" /></td></tr>
 					<tr><td></td><td><input type="hidden" th:field="${expense.expenseID}" /></td></tr>
 				</table> 

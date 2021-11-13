@@ -8,10 +8,10 @@
 <body>	
 	<div class="col d-flex justify-content-center"><div class="card" style="width: 30%">
 		<div class="card-body">
-			<h3 class="card-title">Add a new trip</h3>
+			<h3 class="card-title" th:text="#{addTrip}"></h3>
 			<form th:object="${trip}" th:action="@{/savetrip}" action="#" method="post">
 				<table  class="table">
-			    	<tr><td>Name: </td><td><input type="text" th:field="${trip.tripName}" /></td></tr>
+			    	<tr><td th:text="#{name}"> </td><td><input type="text" th:field="${trip.tripName}" /></td></tr>
 			    	
 				</table> 
 			    <input type="submit" name="save" value="Save"/>
