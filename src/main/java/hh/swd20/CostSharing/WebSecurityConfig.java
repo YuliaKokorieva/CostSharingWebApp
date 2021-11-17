@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        .and()
 			.authorizeRequests()
 				.anyRequest().authenticated()
+//				.anyRequest().permitAll()
 				.and()
 			.formLogin()
 				.defaultSuccessUrl("/trips", true)
@@ -51,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	    }
-
+	
+	
 	
 
 }
